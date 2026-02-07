@@ -1,0 +1,9 @@
+packages:
+  - 'packages/*'
+  - 'apps/*'
+  
+# If you have more specific configurations, you can add them here. For example, 
+# if you want to override package settings, you can do it like this:
+# overrides:
+#   package-name:
+#     version: "x.y.z"
