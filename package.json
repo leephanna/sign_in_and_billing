@@ -1,1 +1,22 @@
-{\n  "name": "sign_in_and_billing",\n  "private": true,\n  "version": "1.0.0",\n  "workspaces": [\n    "packages/*"\n  ],\n  "devDependencies": {\n    "turbo": "^1.0.0"  // Adjust to the latest version\n  },\n  "dependencies": {\n    "harmony-auth-module": "^1.0.0",  // Example module for authentication\n    "harmony-billing-module": "^1.0.0" // Example module for billing\n  },\n  "scripts": {\n    "dev": "turbo dev",\n    "build": "turbo build",\n    "start": "turbo start"\n  }\n}
+{
+  "name": "harmonia-auth-billing",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev --parallel",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "db:migrate": "node ./scripts/migrate.mjs",
+    "db:seed": "node ./scripts/seed.mjs"
+  },
+  "devDependencies": {
+    "pg": "^8.11.5",
+    "turbo": "^2.0.9"
+  }
+}
