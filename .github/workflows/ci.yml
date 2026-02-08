@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: harmonia
+          POSTGRES_PASSWORD: harmonia
+          POSTGRES_DB: harmonia
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U harmonia"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgres://harmonia:harmonia@localhost:5432/harmonia
+      HARMONIA_MASTER_KEY: ci-master-key-please-change-32chars
+      HARMONIA_JWT_SECRET: ci-jwt-secret-please-change-32chars
+      HARMONIA_BILLING_MODE: MOCK
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile=false
+      - run: pnpm db:migrate
+      - run: pnpm test
+      - run: pnpm build

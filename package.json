@@ -1,0 +1,22 @@
+{
+  "name": "harmonia-auth-billing",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "turbo dev --parallel",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "db:migrate": "node ./scripts/migrate.mjs",
+    "db:seed": "node ./scripts/seed.mjs"
+  },
+  "devDependencies": {
+    "pg": "^8.11.5",
+    "turbo": "^2.0.9"
+  }
+}

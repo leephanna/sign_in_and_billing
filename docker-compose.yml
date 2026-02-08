@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: harmonia
+      POSTGRES_PASSWORD: harmonia
+      POSTGRES_DB: harmonia
+    ports:
+      - "5432:5432"
+    volumes:
+      - harmonia_pg:/var/lib/postgresql/data
+volumes:
+  harmonia_pg:
