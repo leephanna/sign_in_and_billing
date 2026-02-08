@@ -1,24 +1,18 @@
-# Node.js
-node_modules/
-
-# Build output
-/dist/
-
-# Local env files
+node_modules
+.pnpm-store
+.env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
+.DS_Store
 
-# Logs
-logs/
+# build outputs
+dist
+.next
+out
+coverage
+
+# logs
 *.log
 
-# Dependency directories
-jspm_packages/
+.turbo
 
-# TypeScript
-*.tsbuildinfo
-
-# macOS
-.DS_Store
