@@ -38,5 +38,8 @@ jobs:
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile=false
       - run: pnpm db:migrate
-      - run: pnpm test
+      - name: Run pnpm test
+        run: pnpm test
+        env:
+          HARMONIA_JWT_SECRET: "ci-test-secret"
       - run: pnpm build

@@ -10,6 +10,7 @@ describe("core-service", () => {
   let client: Client;
 
   beforeAll(async () => {
+    process.env.HARMONIA_JWT_SECRET ||= "test-secret";
     client = new Client({ connectionString: DATABASE_URL });
     await client.connect();
     const sql = readFileSync(new URL("../db/schema.sql", import.meta.url), "utf8");
